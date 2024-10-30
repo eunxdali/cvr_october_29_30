@@ -1,1 +1,22 @@
+import cv2
+cap = cv2.VideoCapture(0)
+length = 100
 
+while True:
+    ret, frame = cap.read()
+    print(frame.shape)
+    height, width, _ = frame.shape
+    x_center = width//2
+    y_center = height//2
+    length = round(0.52 * height)
+    frame[y_center - length//2: y_center + length, x_center - length//2: x_center + length//2, 1:2] = 255
+    cv2.imshow('camera', frame)
+    key = cv2.waitKey(1)
+    if key == ord(' '):
+        break
+    #print(key)
+    #print(ret)
+    #print(frame)
+    print(ord('q'))
+cv2.destroyAllWindows()
+cap.release()
